@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Utils.Math
 {
-	internal class Primes
+	public class Primes
 	{
 		/// <summary>Determines if a candidate is Prime</summary>
 		/// <param name="candidate">Long/int64</param>
-		/// <returns>true on prime</returns>
+		/// <returns>Boolean, true on prime</returns>
 		/// <remarks>Only works on Int32 and Int64</remarks>
 		public static bool IsPrime(long candidate)
 		{
@@ -32,7 +32,7 @@ namespace Utils.Math
 		/// </summary>
 		/// <param name="exclusiveMax">Exclusive upperlimit, for example 100 would give primes up to 99</param>
 		/// <returns>A list of primes, or empty list otherwise</returns>
-		/// <remarks>Exclusive max, must be lower then int.maxValue</remarks>
+		/// <remarks>Exclusive max, must be lower then Int32.maxValue</remarks>
 		public static List<int> SieveOfEratosthenes(int exclusiveMax)
 		{
 			List<int> primes = new List<int>();

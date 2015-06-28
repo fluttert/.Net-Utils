@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Math\CommonDivisor.cs" />
     <Compile Include="Math\GPS.cs" />
     <Compile Include="Math\Primes.cs" />
     <Compile Include="Program.cs" />
