@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Utils.Math
+namespace Fluttert.Utils.Math
 {
 	internal class CommonDivisor
 	{
@@ -48,7 +48,7 @@ namespace Utils.Math
 			// else do the classic Euclidean GCD algorithm make sure a = biggest, b = smallest
 			if (b > a) { long t = a; a = b; b = t; }
 
-			// https: //en.wikipedia.org/wiki/Euclidean_algorithm Divide the remainders, until the
+			// https://en.wikipedia.org/wiki/Euclidean_algorithm. Divide the remainders, until the
 			// first factor is found. This first factor will be the biggest factor
 			while (b != 0)
 			{

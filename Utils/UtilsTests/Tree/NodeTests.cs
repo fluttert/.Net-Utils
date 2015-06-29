@@ -1,10 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Utils.Tree;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Fluttert.Utils.Tree;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Utils.Tree.Tests
 {
@@ -114,7 +109,6 @@ namespace Utils.Tree.Tests
 			Assert.AreSame(t2, t1[0]);          // first child = t2
 			Assert.AreSame(t2.Parent, t1);      // parent = t1
 			Assert.IsFalse(t1.CyclePrevented);  // no cycle
-
 
 			t2.AddExistingChild(t1);            // try to add child (should fail)
 			Assert.IsNull(t2[0]);               // no child added

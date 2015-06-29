@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utils.Tree
+namespace Fluttert.Utils.Tree
 {
 	/// <summary>Generic Node class, usable in tree-structures</summary>
 	/// <typeparam name="T">Generic type</typeparam>
