@@ -2,7 +2,7 @@
 
 namespace Fluttert.Utils.Math
 {
-	internal class CommonDivisor
+	public class CommonDivisor
 	{
 		/// <summary>Get all common divisors between 2 numbers (long/int64)</summary>
 		/// <param name="a">Number</param>
