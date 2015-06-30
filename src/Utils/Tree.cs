@@ -1,8 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fluttert.Utils.Tree
 {
@@ -12,7 +10,7 @@ namespace Fluttert.Utils.Tree
 	/// <remarks>
 	/// Based on http://stackoverflow.com/questions/66893/tree-data-structure-in-c-sharp ;
 	/// </remarks>
-	public class Node<T>
+	public class Node<T> : IEnumerable<Node<T>>
 	{
 		private Node<T> _parent;
 		public readonly string NodeId;
@@ -69,9 +67,7 @@ namespace Fluttert.Utils.Tree
 		{
 		}
 
-		/// <summary>
-		/// Update the value of this node
-		/// </summary>
+		/// <summary>Update the value of this node</summary>
 		/// <param name="value">The new value</param>
 		/// <returns>This node</returns>
 		public Node<T> UpdateValue(T value)
@@ -79,6 +75,7 @@ namespace Fluttert.Utils.Tree
 			Value = value;
 			return this;
 		}
+
 		/// <summary>Disconnects this node from the parent</summary>
 		/// <returns>The current node</returns>
 		/// <remarks>This also updates all underlying nodes</remarks>
@@ -90,8 +87,6 @@ namespace Fluttert.Utils.Tree
 			return this;
 		}
 
-
-
 		/// <summary>Updates the current level</summary>
 		/// <remarks>This is often needed when the node it added out-of-order (new parent)</remarks>
 		protected void UpdateLevel()
@@ -99,6 +94,7 @@ namespace Fluttert.Utils.Tree
 			if (_parent != null) { Level = _parent.Level + 1; }
 			else { Level = 0; } // reset to default
 		}
+
 		/// <summary>Adds an existing Node as a child to this Node</summary>
 		/// <param name="child">The child node to be added</param>
 		/// <returns>The current node</returns>
@@ -118,9 +114,7 @@ namespace Fluttert.Utils.Tree
 			return this;
 		}
 
-		/// <summary>
-		/// Helper function to detect if a cycle is present by going to all ancestors
-		/// </summary>
+		/// <summary>Helper function to detect if a cycle is present by going to all ancestors</summary>
 		/// <returns>Bool, true if an ancestor node is equal to itself</returns>
 		private bool WillAddCauseCycle()
 		{
@@ -158,5 +152,20 @@ namespace Fluttert.Utils.Tree
 				child.Traverse(action);
 			}
 		}
+
+		#region IEnumberable interface implementation
+
+		/// <summary>
+		/// Quick IEnumerator for querying the child-nodes
+		/// </summary>
+		/// <returns>IEnumerator of Node</returns>
+		public IEnumerator<Node<T>> GetEnumerator()
+		{
+			return Children.GetEnumerator();
+		}
+
+		// returns  a generic enumerator object
+		IEnumerator IEnumerable.GetEnumerator() { return GetEnumerator(); }
+		#endregion IEnumberable interface implementation
 	}
 }

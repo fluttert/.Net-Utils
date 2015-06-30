@@ -1,5 +1,7 @@
 ﻿using Fluttert.Utils.Tree;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Utils.Tree.Tests
 {
@@ -127,6 +129,27 @@ namespace Utils.Tree.Tests
 			Assert.IsNull(t3[0]);               // no child added
 			Assert.IsTrue(t3.CyclePrevented);   // Cycle is prevented!
 			Assert.IsNull(t1.Parent);           // no parent is set
+		}
+
+		[TestMethod()]
+		public void IEnumerableTest()
+		{
+			Node<string> root = new Node<string>("test1", null, "RootNode");
+			Node<string> t1 = new Node<string>("test2", "Node2");
+			Node<string> t2 = new Node<string>("test3", "Node3");
+			Node<string> newChild1 = new Node<string>("test4", "Node4");
+			Node<string> newChild2 = new Node<string>("test5", "Node5");
+
+			newChild1.AddExistingChild(newChild2);
+			root.AddExistingChild(t1).AddExistingChild(t2).AddExistingChild(newChild1);
+
+			var list1 = new List<Node<string>>() { t1, t2, newChild1 };
+			var list2 = new List<Node<string>>() { t1, t2 };
+
+			Assert.AreEqual(3, root.Count());
+			CollectionAssert.AreEqual(list1, root.ToList());
+			CollectionAssert.AreEqual(list2, root.Where(a => a.NodeId!= "Node4").ToList());
+			
 		}
 	}
 }
