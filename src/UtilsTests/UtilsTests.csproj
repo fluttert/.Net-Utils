@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Math\PrimesTests.cs" />
     <Compile Include="Math\PascalTriangleTest.cs" />
+    <Compile Include="Math\CommonDivisorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextTests.cs" />
     <Compile Include="Tree\NodeTests.cs" />
