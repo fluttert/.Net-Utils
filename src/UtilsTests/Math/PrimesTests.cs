@@ -3,7 +3,7 @@ using ChallengeUtils.Math;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace Utils.Math.Tests
+namespace Utils.Math
 {
 	[TestClass()]
 	public class PrimesTests

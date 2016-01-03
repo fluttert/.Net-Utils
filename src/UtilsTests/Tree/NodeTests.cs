@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using ChallengeUtils.Tree;
 
-namespace Utils.Tree.Tests
+namespace Utils.Tree
 {
 	[TestClass()]
 	public class NodeTests

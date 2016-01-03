@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ChallengeUtils.Text;
 
-namespace Fluttert.Utils.StringExtensions.Tests
+namespace Utils.StringExtensions
 {
 	[TestClass()]
 	public class TextTests
