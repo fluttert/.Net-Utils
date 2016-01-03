@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace ChallengeUtils
+namespace ChallengeUtils.Math
 {
 	public class Primes
 	{

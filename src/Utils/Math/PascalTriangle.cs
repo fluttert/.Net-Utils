@@ -1,15 +1,16 @@
 ﻿using System.Numerics;
 
-namespace ChallengeUtilsUtils.Math
+namespace ChallengeUtils.Math
 {
-    internal class PascalTriangle
+    public class PascalTriangle
     {
         /// <summary>
         /// Create a pascal triangle, usefull for combinatorics
         /// </summary>
         /// <param name="n">The total amount of rows (LONG, max = Int64.MaxValue)</param>
         /// <returns>Jagged matrix of BigIntegers[][], where (n choose r) -> [n][r]</returns>
-        /// <remarks>See also: https://en.wikipedia.org/wiki/Pascals_triangle </remarks>
+        /// <remarks>Depends on BigInteger from System.Numerics namespace</remarks>
+        /// <seealso cref="https://en.wikipedia.org/wiki/Pascals_triangle"/>
         public static BigInteger[][] Create(long n)
         {
             //  (the zero'th row will have 1 element)
@@ -41,7 +42,7 @@ namespace ChallengeUtilsUtils.Math
         /// <param name="n">The total amount of rows (LONG, max = Int64.MaxValue)</param>
         /// <param name="modulo">Modulo the triangle by this number (max = Int64.MaxValue /2 )</param>
         /// <returns>Jagged matrix long[][], truncated by the modulo, where (n choose r) -> [n][r]</returns>
-        /// <remarks>See also: https://en.wikipedia.org/wiki/Pascals_triangle </remarks>
+        /// <seealso cref="https://en.wikipedia.org/wiki/Pascals_triangle"/>
         public static long[][] CreateModulo(long n, long modulo)
         {
             if (modulo >= long.MaxValue / 2) { throw new System.ArgumentOutOfRangeException("Modulo is too big"); }
