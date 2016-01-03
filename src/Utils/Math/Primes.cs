@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Fluttert.Utils.Math
+namespace ChallengeUtils
 {
 	public class Primes
 	{

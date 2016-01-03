@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fluttert.Utils.StringExtensions
+namespace ChallengeUtils.Text
 {
 	public static class StringExtensions
 	{

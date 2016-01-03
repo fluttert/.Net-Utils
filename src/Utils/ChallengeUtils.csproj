@@ -43,13 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonDivisor.cs" />
-    <Compile Include="GPS.cs" />
-    <Compile Include="Primes.cs" />
+    <Compile Include="Math\CommonDivisor.cs" />
+    <Compile Include="Geo\GPS.cs" />
+    <Compile Include="Math\Primes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensions.cs" />
-    <Compile Include="Tree.cs" />
+    <Compile Include="Text\StringExtensions.cs" />
+    <Compile Include="Tree\Tree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

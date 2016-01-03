@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Fluttert.Utils.Tree
+namespace ChallengeUtils.Tree
 {
 	/// <summary>Generic Node class, usable in tree-structures</summary>
 	/// <typeparam name="T">Generic type</typeparam>

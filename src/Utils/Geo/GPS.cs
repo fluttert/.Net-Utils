@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fluttert.Utils.Math
+namespace ChallengeUtils.Geo
 {
 	class GPS
 	{

@@ -1,4 +1,4 @@
-﻿using Fluttert.Utils.Math;
+﻿using ChallengeUtils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 

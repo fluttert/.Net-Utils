@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fluttert.Utils.Math
+namespace ChallengeUtils.Math
 {
 	public class CommonDivisor
 	{
