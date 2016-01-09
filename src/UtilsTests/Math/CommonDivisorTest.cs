@@ -34,6 +34,7 @@ namespace UtilsTests.Math
             Assert.AreEqual(1, CommonDivisor.GreatestCommonDivisor(1, 1));  // edgecase 1
             Assert.AreEqual(2, CommonDivisor.GreatestCommonDivisor(2, 4));  // regular numbers
             Assert.AreEqual(2, CommonDivisor.GreatestCommonDivisor(4, 2));  // reverse order of input
+            Assert.AreEqual(33, CommonDivisor.GreatestCommonDivisor(33, 33)); // same numbers, highest = number it self
             Assert.AreEqual(1, CommonDivisor.GreatestCommonDivisor(5, 11)); // primes, no common divisor
             Assert.AreEqual(1, CommonDivisor.GreatestCommonDivisor(6, 35)); // co-primes (2*3 and 5*7), no common divisor
             Assert.AreEqual(15, CommonDivisor.GreatestCommonDivisor(30, 45));

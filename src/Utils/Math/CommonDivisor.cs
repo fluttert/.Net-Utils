@@ -1,9 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ChallengeUtils.Math
 {
     public class CommonDivisor
     {
+        /// <summary>
+        /// Get all factors for a composite number
+        /// </summary>
+        /// <param name="a">The number to be factored</param>
+        /// <returns>List of factors in ascending order, excluding 1 and itself</returns>
+        /// <remarks>Primes will give an empty list</remarks>
+        public static List<long> Factors(long a)
+        {
+            var result = new List<long>();
+
+            // early exit on negative numbers and zero
+            if (a <= 0) { return result; }  
+
+            // get the maximum factor, eg the max factor of 10 should be 4
+            long maxFactor = Convert.ToInt64(System.Math.Sqrt(a)) + 1;
+            for (long i = 2; i < maxFactor; i++)
+            {
+                // found a factor? also include the inverse. Example: 10/2 = 5, both 2 and 5 are factors
+                if (a % i == 0) {
+                    result.Add(i);
+                    result.Add(a / i);
+                }
+            }
+            result.Sort(); // sort in ascending order
+            return result;
+        }
+
         /// <summary>Get all common divisors between 2 numbers (long/int64)</summary>
         /// <param name="a">Number</param>
         /// <param name="b">Number</param>
@@ -34,29 +62,26 @@ namespace ChallengeUtils.Math
             return commonDivisors;
         }
 
-        /// <summary>Classic GCD</summary>
+        /// <summary>Classic GCD, using Euclidian algorithm</summary>
         /// <param name="a">First number</param>
         /// <param name="b">Second number</param>
         /// <returns>Long: biggest common divisor, or 0 (zero) on negative numbers and 0</returns>
+        /// <remarks>https://en.wikipedia.org/wiki/Euclidean_algorithm</remarks>
         public static long GreatestCommonDivisor(long a, long b)
         {
             // do a zero check and negativity check
             if (a <= 0 || b <= 0) { return 0; }
-            // biggest divisor possible, when numbers are the same
-            if (a == b) { return a; }
-            // when a or b =1, then it will always be the biggest
-            if (a == 1 || b == 1) { return 1; }
 
-            // else do the classic Euclidean GCD algorithm make sure a = biggest, b = smallest
+            // force a = biggest, b = smallest
             if (b > a) { long t = a; a = b; b = t; }
 
-            // https://en.wikipedia.org/wiki/Euclidean_algorithm. Divide the remainders, until the
-            // first factor is found. This first factor will be the biggest factor
+            // Divide the remainders, until the first factor is found. This first factor will be the biggest factor
             while (b != 0)
             {
-                long temp = b;
-                b = a % b;
-                a = temp;
+                long temp = a % b;  // Keep substracting b from a, untill the remainder is smaller then b
+                a = b;              // b is now the biggest factor, so it becomes a
+                b = temp;           // the smaller factor will be b (or 0 when a common divider is found)
+                
             }
             return a;
         }
