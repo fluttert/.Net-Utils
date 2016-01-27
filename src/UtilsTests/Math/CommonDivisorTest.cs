@@ -8,6 +8,23 @@ namespace UtilsTests.Math
     public class CommonDivisorTest
     {
         [TestMethod]
+        public void HighestPrimeFactorTest() {
+            Assert.AreEqual(0, CommonDivisor.HighestPrimeFactor(1));
+            Assert.AreEqual(2, CommonDivisor.HighestPrimeFactor(2));
+            Assert.AreEqual(3, CommonDivisor.HighestPrimeFactor(3));
+            Assert.AreEqual(2, CommonDivisor.HighestPrimeFactor(4));
+            Assert.AreEqual(5, CommonDivisor.HighestPrimeFactor(5));
+            Assert.AreEqual(3, CommonDivisor.HighestPrimeFactor(6));
+            Assert.AreEqual(7, CommonDivisor.HighestPrimeFactor(7));
+            Assert.AreEqual(2, CommonDivisor.HighestPrimeFactor(8));
+            Assert.AreEqual(3, CommonDivisor.HighestPrimeFactor(9));
+            Assert.AreEqual(5, CommonDivisor.HighestPrimeFactor(10));
+            Assert.AreEqual(3, CommonDivisor.HighestPrimeFactor(864));
+            Assert.AreEqual(17, CommonDivisor.HighestPrimeFactor(830297));
+            Assert.AreEqual(909091, CommonDivisor.HighestPrimeFactor(10000001));
+        }
+
+        [TestMethod]
         public void CommonDivisorsTest()
         {
             // empty list on zero

@@ -6,7 +6,7 @@ namespace ChallengeUtils.Math
     public class CommonDivisor
     {
         /// <summary>
-        /// Get all factors for a composite number
+        /// Get all factors for a composite number, excluding 1 and itself
         /// </summary>
         /// <param name="a">The number to be factored</param>
         /// <returns>List of factors in ascending order, excluding 1 and itself</returns>
@@ -16,20 +16,72 @@ namespace ChallengeUtils.Math
             var result = new List<long>();
 
             // early exit on negative numbers and zero
-            if (a <= 0) { return result; }  
+            if (a <= 0) { return result; }
 
             // get the maximum factor, eg the max factor of 10 should be 4
             long maxFactor = Convert.ToInt64(System.Math.Sqrt(a)) + 1;
             for (long i = 2; i < maxFactor; i++)
             {
                 // found a factor? also include the inverse. Example: 10/2 = 5, both 2 and 5 are factors
-                if (a % i == 0) {
+                if (a % i == 0)
+                {
                     result.Add(i);
-                    result.Add(a / i);
+
+                    // add the inverse factor if not the same
+                    if (i != a / i)
+                    {
+                        result.Add(a / i);
+                    }
                 }
             }
             result.Sort(); // sort in ascending order
             return result;
+        }
+
+        /// <summary>
+        /// Return the highest primefactor from a number
+        /// </summary>
+        /// <param name="candidate">the number to be tested</param>
+        /// <returns>Highest prime factor; or 0 on no primes (candidate<2)</returns>
+        public static long HighestPrimeFactor(long candidate)
+        {
+            if (candidate < 2) { return 0; }
+
+            long primeFactor = 0;
+            // get rid of even numbers
+            while (candidate % 2 == 0)
+            {
+                primeFactor = 2;
+                candidate = candidate / 2;
+            }
+
+            // all exactly even 2^N / 4^N etc, will have highest prime factor 2
+            if (candidate == 1) { return 2; }
+
+            // the rest can be divided by 3+2N, up to the maxFactor of Sqrt(candidate)
+            long j = 3;
+            long maxFactor = Convert.ToInt64(System.Math.Sqrt(candidate));
+            while (candidate > 1 && j <= maxFactor)
+            {
+                if (candidate % j == 0)
+                {
+                    // YEAH DIVISOR! adjust candidate, primefactor and maxfactor
+                    if (primeFactor < j) { primeFactor = j; }
+                    candidate = candidate / j;
+                    maxFactor = Convert.ToInt64(System.Math.Sqrt(candidate));
+                    // start over again with division
+                    j = 3;
+                }
+                else {
+                    // no joy, just keep on trying
+                    j += 2;
+                }
+            }
+
+            // number itself is prime if no factors have been found
+            // also if the remainder is higher then the candidate, it will be the highest primefactor (eg: 34 -> 34/2 = 17 )
+            if (primeFactor == 0 || candidate > primeFactor) { primeFactor = candidate; }
+            return primeFactor;
         }
 
         /// <summary>Get all common divisors between 2 numbers (long/int64)</summary>
@@ -81,7 +133,6 @@ namespace ChallengeUtils.Math
                 long temp = a % b;  // Keep substracting b from a, untill the remainder is smaller then b
                 a = b;              // b is now the biggest factor, so it becomes a
                 b = temp;           // the smaller factor will be b (or 0 when a common divider is found)
-                
             }
             return a;
         }
