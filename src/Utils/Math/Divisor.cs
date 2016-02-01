@@ -8,34 +8,71 @@ namespace ChallengeUtils.Math
         /// <summary>
         /// Get all factors for a composite number, excluding 1 and itself
         /// </summary>
-        /// <param name="a">The number to be factored</param>
+        /// <param name="candidate">The number to be factored</param>
         /// <returns>List of factors in ascending order, excluding 1 and itself</returns>
         /// <remarks>Primes will give an empty list</remarks>
-        public static List<long> Factors(long a)
+        public static List<long> Factors(long candidate)
         {
             var result = new List<long>();
 
             // early exit on negative numbers and zero
-            if (a <= 0) { return result; }
+            if (candidate <= 0) { return result; }
 
             // get the maximum factor, eg the max factor of 10 should be 4
-            long maxFactor = Convert.ToInt64(System.Math.Sqrt(a)) + 1;
+            long maxFactor = Convert.ToInt64(System.Math.Sqrt(candidate)) + 1;
             for (long i = 2; i < maxFactor; i++)
             {
                 // found a factor? also include the inverse. Example: 10/2 = 5, both 2 and 5 are factors
-                if (a % i == 0)
+                if (candidate % i == 0)
                 {
                     result.Add(i);
 
                     // add the inverse factor if not the same
-                    if (i != a / i)
+                    if (i != candidate / i)
                     {
-                        result.Add(a / i);
+                        result.Add(candidate / i);
                     }
                 }
             }
             result.Sort(); // sort in ascending order
             return result;
+        }
+
+
+        /// <summary>
+        /// Determine the amount of divisors for a number
+        /// </summary>
+        /// <param name="candidate">Number to be factored</param>
+        /// <returns>Long </returns>
+        /// <remarks>Based on (p1+1)*(p2+1)*...(pn+1) where pX. See also: https://en.wikipedia.org/wiki/Integer_factorization and https://en.wikipedia.org/wiki/Highly_composite_number
+        /// Is the prime-exponent. Depends on the primes, sieve of Erosthenes</remarks>
+        public static long AmountOfDivisors(long candidate) {
+            if (candidate <= 0) { throw new ArgumentOutOfRangeException("Number must be greater then 0");  }
+            if (candidate == 1) { return 1; }
+
+            // generate primes
+            int maxPrime = (int)System.Math.Sqrt(candidate);
+            List<int> primes = ChallengeUtils.Math.Primes.SieveOfEratosthenes(maxPrime + 1);
+
+            // trial division by primes
+            // example 1: 6 = 2*3 = 2^1 * 3*1 -> (1+1) * (1+1) = 4. 6 {1, 2, 3 ,6}
+            // example 2: 12 = 2^2 * 3^1 -> (2+1) * (1+1) = 6. 12{1,2,3,4,6,12}
+            long totalDivisors = 1;
+            for (int k = 0; k < primes.Count; k++)
+            {
+                int curPrimeExp = 0;
+                while (candidate % primes[k] == 0)
+                {
+                    curPrimeExp++;
+                    candidate /= primes[k];
+                }
+                if (curPrimeExp > 0)
+                {
+                    // if there is an exponent, add 1 and multiply
+                    totalDivisors *= (curPrimeExp + 1);
+                }
+            }
+            return totalDivisors;
         }
 
         /// <summary>
