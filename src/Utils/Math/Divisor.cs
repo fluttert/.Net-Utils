@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ChallengeUtils.Math
 {
-    public class CommonDivisor
+    public class Divisor
     {
         /// <summary>
         /// Get all factors for a composite number, excluding 1 and itself
