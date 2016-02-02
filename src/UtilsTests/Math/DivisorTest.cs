@@ -1,14 +1,66 @@
 ﻿using ChallengeUtils.Math;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace UtilsTests.Math
 {
     [TestClass]
-    public class CommonDivisorTest
+    public class DivisorTest
     {
         [TestMethod]
-        public void HighestPrimeFactorTest() {
+        public void FactorsTest() { }
+
+        [TestMethod]
+        public void AmountOfDivisorsExceptionTest()
+        {
+            try
+            {
+                Divisor.AmountOfDivisors(0);
+                Assert.Fail(); // If it gets to this line, no exception was thrown
+            }
+            catch (ArgumentOutOfRangeException) { }
+            catch (Exception)
+            {
+                // not the right kind of exception
+                Assert.Fail();
+            }
+
+            try
+            {
+                Divisor.AmountOfDivisors(4611686014132420610);
+                Assert.Fail(); // If it gets to this line, no exception was thrown
+            }
+            catch (ArgumentOutOfRangeException) { }
+            catch (Exception)
+            {
+                // not the right kind of exception
+                Assert.Fail();
+            }
+
+            
+        }
+
+        [TestMethod]
+        public void AmountOfDivisorsTest()
+        {
+            Assert.AreEqual(1, Divisor.AmountOfDivisors(1));
+            Assert.AreEqual(2, Divisor.AmountOfDivisors(2));
+            Assert.AreEqual(2, Divisor.AmountOfDivisors(3));
+            Assert.AreEqual(3, Divisor.AmountOfDivisors(4));
+            Assert.AreEqual(2, Divisor.AmountOfDivisors(5));
+            Assert.AreEqual(4, Divisor.AmountOfDivisors(6));
+            Assert.AreEqual(2, Divisor.AmountOfDivisors(7));
+            Assert.AreEqual(4, Divisor.AmountOfDivisors(8));
+            Assert.AreEqual(3, Divisor.AmountOfDivisors(9));
+            Assert.AreEqual(60, Divisor.AmountOfDivisors(5040));
+            Assert.AreEqual(240, Divisor.AmountOfDivisors(720720));
+            Assert.AreEqual(896, Divisor.AmountOfDivisors(147026880));
+        }
+
+        [TestMethod]
+        public void HighestPrimeFactorTest()
+        {
             Assert.AreEqual(0, Divisor.HighestPrimeFactor(1));
             Assert.AreEqual(2, Divisor.HighestPrimeFactor(2));
             Assert.AreEqual(3, Divisor.HighestPrimeFactor(3));
@@ -23,8 +75,6 @@ namespace UtilsTests.Math
             Assert.AreEqual(17, Divisor.HighestPrimeFactor(830297));
             Assert.AreEqual(909091, Divisor.HighestPrimeFactor(10000001));
             Assert.AreEqual(6857, Divisor.HighestPrimeFactor(600851475143));
-
-            
         }
 
         [TestMethod]

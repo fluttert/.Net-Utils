@@ -6,10 +6,10 @@ namespace ChallengeUtils.Math
     public class Divisor
     {
         /// <summary>
-        /// Get all factors for a composite number, excluding 1 and itself
+        /// Get all factors for a composite number, including 1 and itself
         /// </summary>
         /// <param name="candidate">The number to be factored</param>
-        /// <returns>List of factors in ascending order, excluding 1 and itself</returns>
+        /// <returns>List of factors in ascending order, including 1 and itself</returns>
         /// <remarks>Primes will give an empty list</remarks>
         public static List<long> Factors(long candidate)
         {
@@ -17,6 +17,8 @@ namespace ChallengeUtils.Math
 
             // early exit on negative numbers and zero
             if (candidate <= 0) { return result; }
+            result.Add(1);
+            
 
             // get the maximum factor, eg the max factor of 10 should be 4
             long maxFactor = Convert.ToInt64(System.Math.Sqrt(candidate)) + 1;
@@ -34,6 +36,8 @@ namespace ChallengeUtils.Math
                     }
                 }
             }
+            
+            if (candidate > 1) { result.Add(candidate); }
             result.Sort(); // sort in ascending order
             return result;
         }
@@ -47,11 +51,11 @@ namespace ChallengeUtils.Math
         /// <remarks>Based on (p1+1)*(p2+1)*...(pn+1) where pX. See also: https://en.wikipedia.org/wiki/Integer_factorization and https://en.wikipedia.org/wiki/Highly_composite_number
         /// Is the prime-exponent. Depends on the primes, sieve of Erosthenes</remarks>
         public static long AmountOfDivisors(long candidate) {
-            if (candidate <= 0) { throw new ArgumentOutOfRangeException("Number must be greater then 0");  }
+            if (candidate <= 0 ||  candidate > 4611686014132420609) { throw new ArgumentOutOfRangeException("Number must be greater then 0 and smaller then 4611686014132420609");  }
             if (candidate == 1) { return 1; }
 
-            // generate primes
-            int maxPrime = (int)System.Math.Sqrt(candidate);
+            // generate primes, maxPrime <= 2147483647.
+            int maxPrime = (int)System.Math.Sqrt(candidate); 
             List<int> primes = ChallengeUtils.Math.Primes.SieveOfEratosthenes(maxPrime + 1);
 
             // trial division by primes
@@ -72,6 +76,9 @@ namespace ChallengeUtils.Math
                     totalDivisors *= (curPrimeExp + 1);
                 }
             }
+            // if the candidate itself is prime, thus double the amount of total divisors
+            if (candidate > 1) { totalDivisors *= 2; }
+
             return totalDivisors;
         }
 
