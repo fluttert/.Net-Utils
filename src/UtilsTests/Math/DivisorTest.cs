@@ -9,7 +9,43 @@ namespace UtilsTests.Math
     public class DivisorTest
     {
         [TestMethod]
-        public void FactorsTest() { }
+        public void FactorsTest()
+        {
+            // based on https://en.wikipedia.org/wiki/Table_of_divisors
+            CollectionAssert.AreEqual(
+                new List<long>() { 1 },
+                Divisor.Factors(1));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 2 },
+                Divisor.Factors(2));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 3 },
+                Divisor.Factors(3));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 2, 3, 4, 6, 12 },
+                Divisor.Factors(12));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 3, 7, 21 },
+                Divisor.Factors(21));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 5, 25 },
+                Divisor.Factors(25));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 2, 4, 7, 14, 28 },
+                Divisor.Factors(28));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 587 },
+                Divisor.Factors(587));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 49, 84, 98, 147, 196, 294, 588 },
+                Divisor.Factors(588));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 2, 3, 5, 6, 9, 10, 11, 15, 18, 22, 30, 33, 45, 55, 66, 90, 99, 110, 165, 198, 330, 495, 990 },
+                Divisor.Factors(990));
+            CollectionAssert.AreEqual(
+                new List<long>() { 1, 3, 9, 27, 37, 111, 333, 999 },
+                Divisor.Factors(999));
+        }
 
         [TestMethod]
         public void AmountOfDivisorsExceptionTest()
@@ -37,8 +73,6 @@ namespace UtilsTests.Math
                 // not the right kind of exception
                 Assert.Fail();
             }
-
-            
         }
 
         [TestMethod]
