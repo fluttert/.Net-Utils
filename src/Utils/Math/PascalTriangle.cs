@@ -17,16 +17,12 @@ namespace ChallengeUtils.Math
             var triangle = new BigInteger[n + 1][];
             for (long i = 0; i <= n; i++)
             {
-                for (long j = 0; j <= i; j++)
+                // initialization + first number is always 1
+                triangle[i] = new BigInteger[i + 1];
+                triangle[i][0] = 1;
+                for (long j = 1; j <= i; j++)
                 {
-                    // create new jagged array (minimum) and set first element to 1
-                    if (j == 0)
-                    {
-                        triangle[i] = new BigInteger[i + 1];
-                        triangle[i][j] = 1;
-                        continue;
-                    }
-                    // last element is always 1 (just like the first
+                    // last element is always 1 (just like the first)
                     if (j == i) { triangle[i][i] = 1; continue; }
 
                     // in all other cases, just add the 2 digits in the upper row
@@ -46,20 +42,16 @@ namespace ChallengeUtils.Math
         public static long[][] CreateModulo(long n, long modulo)
         {
             if (modulo >= long.MaxValue / 2) { throw new System.ArgumentOutOfRangeException("Modulo is too big"); }
-            
+
             //  (the zero'th row will have 1 element)
             var triangle = new long[n + 1][];
             for (long i = 0; i <= n; i++)
             {
-                for (long j = 0; j <= i; j++)
+                // initialization + first number is always 1
+                triangle[i] = new long[i + 1];
+                triangle[i][0] = 1;
+                for (long j = 1; j <= i; j++)
                 {
-                    // create new jagged array (minimum) and set first element to 1
-                    if (j == 0)
-                    {
-                        triangle[i] = new long[i + 1];
-                        triangle[i][j] = 1;
-                        continue;
-                    }
                     // last element is always 1 (just like the first
                     if (j == i) { triangle[i][i] = 1; continue; }
 

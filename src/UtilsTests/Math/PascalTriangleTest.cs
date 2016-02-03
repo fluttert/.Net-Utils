@@ -70,7 +70,5 @@ namespace UtilsTests.Math
                 CollectionAssert.AreEqual(expected[i], actual[i]);
             }
         }
-
-       
     }
 }
