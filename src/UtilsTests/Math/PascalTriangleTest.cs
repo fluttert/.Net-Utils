@@ -62,7 +62,7 @@ namespace UtilsTests.Math
                 new long[] { 1, 3, 3, 1 },
                 new long[] { 1, 4, 6, 4,1 }
             };
-            var actual = ChallengeUtils.Math.PascalTriangle.CreateModulo(4, 10);
+            var actual = ChallengeUtils.Math.PascalTriangle.CreateModulo(5, 10);
 
             // TESTING!
             for (int i = 0; i < expected.Length; i++)

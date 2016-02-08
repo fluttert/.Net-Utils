@@ -14,8 +14,8 @@ namespace ChallengeUtils.Math
         public static BigInteger[][] Create(long n)
         {
             //  (the zero'th row will have 1 element)
-            var triangle = new BigInteger[n + 1][];
-            for (long i = 0; i <= n; i++)
+            var triangle = new BigInteger[n][];
+            for (long i = 0; i < n; i++)
             {
                 // initialization + first number is always 1
                 triangle[i] = new BigInteger[i + 1];
@@ -44,8 +44,8 @@ namespace ChallengeUtils.Math
             if (modulo >= long.MaxValue / 2) { throw new System.ArgumentOutOfRangeException("Modulo is too big"); }
 
             //  (the zero'th row will have 1 element)
-            var triangle = new long[n + 1][];
-            for (long i = 0; i <= n; i++)
+            var triangle = new long[n][];
+            for (long i = 0; i < n; i++)
             {
                 // initialization + first number is always 1
                 triangle[i] = new long[i + 1];
