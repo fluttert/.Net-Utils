@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ChallengeUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChallengeUtils.Text;
+using Fluttert.Utils.Text;
 
 namespace Utils.StringExtensions
 {

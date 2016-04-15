@@ -63,9 +63,9 @@
     <Compile Include="Tree\NodeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utils\ChallengeUtils.csproj">
+    <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{DB229C3B-D02A-4FDB-9400-FE6837403593}</Project>
-      <Name>ChallengeUtils</Name>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

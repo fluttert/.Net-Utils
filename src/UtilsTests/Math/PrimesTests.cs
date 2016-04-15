@@ -1,5 +1,5 @@
 ﻿
-using ChallengeUtils.Math;
+using Fluttert.Utils.Math;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 

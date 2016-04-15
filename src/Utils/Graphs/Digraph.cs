@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 
-namespace ChallengeUtils.Tree
+namespace Fluttert.Utils.Tree
 {
     internal class Digraph
     {

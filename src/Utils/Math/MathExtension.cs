@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
 
-namespace ChallengeUtils.Math
+namespace Fluttert.Utils.Math
 {
     public class MathExtension
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ChallengeUtils.Math
+namespace Fluttert.Utils.Math
 {
     public class Divisor
     {
@@ -18,7 +18,6 @@ namespace ChallengeUtils.Math
             // early exit on negative numbers and zero
             if (candidate <= 0) { return result; }
             result.Add(1);
-            
 
             // get the maximum factor, eg the max factor of 10 should be 4
             long maxFactor = Convert.ToInt64(System.Math.Sqrt(candidate)) + 1;
@@ -36,12 +35,11 @@ namespace ChallengeUtils.Math
                     }
                 }
             }
-            
+
             if (candidate > 1) { result.Add(candidate); }
             result.Sort(); // sort in ascending order
             return result;
         }
-
 
         /// <summary>
         /// Determine the amount of divisors for a number
@@ -50,13 +48,14 @@ namespace ChallengeUtils.Math
         /// <returns>Long </returns>
         /// <remarks>Based on (p1+1)*(p2+1)*...(pn+1) where pX. See also: https://en.wikipedia.org/wiki/Integer_factorization and https://en.wikipedia.org/wiki/Highly_composite_number
         /// Is the prime-exponent. Depends on the primes, sieve of Erosthenes</remarks>
-        public static long AmountOfDivisors(long candidate) {
-            if (candidate <= 0 ||  candidate > 4611686014132420609) { throw new ArgumentOutOfRangeException("Number must be greater then 0 and smaller then 4611686014132420609");  }
+        public static long AmountOfDivisors(long candidate)
+        {
+            if (candidate <= 0 || candidate > 4611686014132420609) { throw new ArgumentOutOfRangeException("Number must be greater then 0 and smaller then 4611686014132420609"); }
             if (candidate == 1) { return 1; }
 
             // generate primes, maxPrime <= 2147483647.
-            int maxPrime = (int)System.Math.Sqrt(candidate); 
-            List<int> primes = ChallengeUtils.Math.Primes.SieveOfEratosthenes(maxPrime + 1);
+            int maxPrime = (int)System.Math.Sqrt(candidate);
+            List<int> primes = Fluttert.Utils.Math.Primes.SieveOfEratosthenes(maxPrime + 1);
 
             // trial division by primes
             // example 1: 6 = 2*3 = 2^1 * 3*1 -> (1+1) * (1+1) = 4. 6 {1, 2, 3 ,6}
@@ -116,7 +115,8 @@ namespace ChallengeUtils.Math
                     // start over again with division
                     j = 3;
                 }
-                else {
+                else
+                {
                     // no joy, just keep on trying
                     j += 2;
                 }

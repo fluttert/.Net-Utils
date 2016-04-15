@@ -21,7 +21,7 @@ namespace UtilsTests.Math
                 new BigInteger[] { 1, 5, 10, 10, 5, 1 },
                 new BigInteger[] { 1, 6, 15, 20, 15, 6, 1 }
             };
-            var actual = ChallengeUtils.Math.PascalTriangle.Create(7);
+            var actual = Fluttert.Utils.Math.PascalTriangle.Create(7);
 
             // TESTING!
             for (int i = 0; i < expected.Length; i++)
@@ -42,7 +42,7 @@ namespace UtilsTests.Math
                 new long[] { 1, 5, 0, 0, 5, 1 },
                 new long[] { 1, 6, 5, 0, 5, 6, 1 }
             };
-            var actual = ChallengeUtils.Math.PascalTriangle.CreateModulo(7, 10);
+            var actual = Fluttert.Utils.Math.PascalTriangle.CreateModulo(7, 10);
 
             // TESTING!
             for (int i = 0; i < expected.Length; i++)
@@ -62,7 +62,7 @@ namespace UtilsTests.Math
                 new long[] { 1, 3, 3, 1 },
                 new long[] { 1, 4, 6, 4,1 }
             };
-            var actual = ChallengeUtils.Math.PascalTriangle.CreateModulo(5, 10);
+            var actual = Fluttert.Utils.Math.PascalTriangle.CreateModulo(5, 10);
 
             // TESTING!
             for (int i = 0; i < expected.Length; i++)

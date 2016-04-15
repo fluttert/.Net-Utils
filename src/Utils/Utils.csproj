@@ -7,7 +7,7 @@
     <ProjectGuid>{DB229C3B-D02A-4FDB-9400-FE6837403593}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChallengeUtils</RootNamespace>
+    <RootNamespace>Fluttert.ChallengeUtils</RootNamespace>
     <AssemblyName>ChallengeUtils</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Graphs\IGraph.cs" />
     <Compile Include="Math\Divisor.cs" />
     <Compile Include="Geo\GPS.cs" />
     <Compile Include="Math\MathExtension.cs" />
@@ -70,11 +71,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\StringExtensions.cs" />
-    <Compile Include="Tree\Digraph.cs" />
-    <Compile Include="Tree\Tree.cs" />
+    <Compile Include="Graphs\Digraph.cs" />
+    <Compile Include="Graphs\Tree.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
