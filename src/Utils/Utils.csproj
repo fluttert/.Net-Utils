@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Graphs\IGraph.cs" />
+    <Compile Include="Graphs\Graph.cs" />
     <Compile Include="Math\Divisor.cs" />
     <Compile Include="Geo\GPS.cs" />
     <Compile Include="Math\MathExtension.cs" />
