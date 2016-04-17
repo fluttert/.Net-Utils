@@ -71,7 +71,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\StringExtensions.cs" />
-    <Compile Include="Graphs\Digraph.cs" />
+    <Compile Include="Graphs\DirectedGraph.cs" />
     <Compile Include="Graphs\Tree.cs" />
   </ItemGroup>
   <ItemGroup>
