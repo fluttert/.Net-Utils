@@ -54,7 +54,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="GraphTests\GraphsTest.cs" />
+    <Compile Include="GraphTests\GraphsTests.cs" />
+    <Compile Include="GraphTests\DirectedGraphTests.cs" />
     <Compile Include="MathTests\PrimesTests.cs" />
     <Compile Include="MathTests\PascalTriangleTest.cs" />
     <Compile Include="MathTests\DivisorTest.cs" />

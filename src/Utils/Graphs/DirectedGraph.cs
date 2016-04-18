@@ -1,8 +1,7 @@
-﻿using Fluttert.Utils.Graphs;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
-namespace Fluttert.Utils.Tree
+namespace Fluttert.Utils.Graphs
 {
     /// <summary>
     /// Directed graph
@@ -14,6 +13,7 @@ namespace Fluttert.Utils.Tree
             this.vertices = vertices;
             edges = 0;
             adjacencyList = new List<int>[vertices];
+            addedEdges = new List<int[]>();
             for (int v = 0; v < vertices; v++)
             {
                 adjacencyList[v] = new List<int>();

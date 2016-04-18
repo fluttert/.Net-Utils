@@ -1,17 +1,18 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Fluttert.Utils.Graphs;
+using System.Linq;
 
 namespace UtilsTests.GraphTests
 {
     [TestClass]
-    public class GraphsTest
+    public class DirectedGraphTests
     {
         [TestMethod]
         public void CreateGraph()
         {
             // a cube
-            var graph = new Graph(4);
+            var graph = new DirectedGraph(4);
             graph.AddEdge(0, 1);
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 3);
@@ -21,13 +22,18 @@ namespace UtilsTests.GraphTests
 
             Assert.AreEqual(4, graph.Vertices());
             Assert.AreEqual(6, graph.Edges());
+            Assert.IsTrue(graph.AdjecentVertices(0).Contains(1));
+            Assert.IsTrue(graph.AdjecentVertices(2).Contains(3));
+            Assert.IsTrue(graph.AdjecentVertices(3).Contains(3));
+            Assert.IsFalse(graph.AdjecentVertices(1).Contains(0));
+            Assert.IsFalse(graph.AdjecentVertices(2).Contains(0));
         }
 
         [TestMethod]
         public void DeepCopyGraph()
         {
             // a cube
-            var graph = new Graph(4);
+            var graph = new DirectedGraph(4);
             graph.AddEdge(0, 1);
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 3);
@@ -40,7 +46,5 @@ namespace UtilsTests.GraphTests
             Assert.AreEqual(graph.ToString(), graph2.ToString());
             Assert.AreNotSame(graph, graph2);
         }
-
-
     }
 }
