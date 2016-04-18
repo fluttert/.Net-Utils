@@ -42,6 +42,11 @@ namespace Fluttert.Utils.Graphs
         /// <returns>integer, amount of edges</returns>
         public int Edges() => edges;
 
+        /// <summary>
+        /// Adds an edge from a vertex to another vertex (can be the same)
+        /// </summary>
+        /// <param name="vertexFrom">Id of vertex where the edge starts</param>
+        /// <param name="vertexTo">Id of vertex where the edge ends</param>
         public void AddEdge(int vertexFrom, int vertexTo)
         {
             addedEdges.Add(new int[] { vertexFrom, vertexTo });
@@ -60,7 +65,7 @@ namespace Fluttert.Utils.Graphs
         /// </summary>
         /// <param name="vertex">id of vertex</param>
         /// <returns>List with ID's of connected vertices</returns>
-        public IEnumerable<int> AdjecentVertices(int v) => adjacencyList[v];
+        public IEnumerable<int> AdjecentVertices(int vertex) => adjacencyList[vertex];
 
         #endregion IGraph methods
 

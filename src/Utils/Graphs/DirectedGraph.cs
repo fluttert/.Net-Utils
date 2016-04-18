@@ -37,9 +37,15 @@ namespace Fluttert.Utils.Tree
         /// <returns>integer, amount of edges</returns>
         public int Edges() => edges;
 
-        public void AddEdge(int v, int w)
+        /// <summary>
+        /// Adds an edge from a vertex to another vertex (can be the same)
+        /// </summary>
+        /// <param name="vertexFrom">Id of vertex where the edge starts</param>
+        /// <param name="vertexTo">Id of vertex where the edge ends</param>
+        public void AddEdge(int vertexFrom, int vertexTo)
         {
-            adjacencyList[v].Add(w);
+            addedEdges.Add(new int[] { vertexFrom, vertexTo });
+            adjacencyList[vertexFrom].Add(vertexTo);
             edges++;
         }
 
@@ -48,13 +54,27 @@ namespace Fluttert.Utils.Tree
         /// </summary>
         /// <param name="vertex">id of vertex</param>
         /// <returns>List with ID's of connected vertices</returns>
-        public IEnumerable<int> AdjecentVertices(int v) => adjacencyList[v];
+        public IEnumerable<int> AdjecentVertices(int vertex) => adjacencyList[vertex];
 
         /// <summary>
         /// Standard representation of the directed graph
         /// </summary>
         /// <returns>string</returns>
         public override string ToString() => GraphUtil.Stringify(this);
+
+        /// <summary>
+        /// Creates a deepcopy of this graph
+        /// </summary>
+        /// <returns>Graph</returns>
+        public DirectedGraph DeepCopy()
+        {
+            var copy = new DirectedGraph(Vertices());
+            for (int e = 0; e < addedEdges.Count; e++)
+            {
+                copy.AddEdge(addedEdges[e][0], addedEdges[e][1]);
+            }
+            return copy;
+        }
 
         /// <summary>
         /// Reverse the directed edges in the graph
