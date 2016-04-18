@@ -11,35 +11,36 @@ namespace Fluttert.Utils.Tree
     {
         public DirectedGraph(int vertices)
         {
-            _vertices = vertices;
-            _edges = 0;
-            _adjacencyList = new List<int>[vertices];
+            this.vertices = vertices;
+            edges = 0;
+            adjacencyList = new List<int>[vertices];
             for (int v = 0; v < vertices; v++)
             {
-                _adjacencyList[v] = new List<int>();
+                adjacencyList[v] = new List<int>();
             }
         }
 
-        private int _vertices;
-        private int _edges;
-        private List<int>[] _adjacencyList;
+        private readonly int vertices;
+        private readonly List<int>[] adjacencyList;
+        private readonly List<int[]> addedEdges;
+        private int edges;
 
         /// <summary>
         /// Total amount of vertices in this graph
         /// </summary>
         /// <returns>integer, amount of vertices</returns>
-        public int Vertices() => _vertices;
+        public int Vertices() => vertices;
 
         /// <summary>
         /// Total amount of edges in this graph
         /// </summary>
         /// <returns>integer, amount of edges</returns>
-        public int Edges() => _edges;
+        public int Edges() => edges;
 
         public void AddEdge(int v, int w)
         {
-            _adjacencyList[v].Add(w);
-            _edges++;
+            adjacencyList[v].Add(w);
+            edges++;
         }
 
         /// <summary>
@@ -47,23 +48,13 @@ namespace Fluttert.Utils.Tree
         /// </summary>
         /// <param name="vertex">id of vertex</param>
         /// <returns>List with ID's of connected vertices</returns>
-        public IEnumerable<int> AdjecentVertices(int v) => _adjacencyList[v];
+        public IEnumerable<int> AdjecentVertices(int v) => adjacencyList[v];
 
         /// <summary>
         /// Standard representation of the directed graph
         /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("{_vertices} vertices, {_edges} edges");
-            for (int v = 0; v < _vertices; v++)
-            {
-                sb.AppendLine($"{v} connects to: {string.Join(" ", AdjecentVertices(v))}");
-            }
-
-            return sb.ToString();
-        }
+        /// <returns>string</returns>
+        public override string ToString() => GraphUtil.Stringify(this);
 
         /// <summary>
         /// Reverse the directed edges in the graph
@@ -71,8 +62,8 @@ namespace Fluttert.Utils.Tree
         /// <returns></returns>
         public DirectedGraph Reverse()
         {
-            var reversedGraph = new DirectedGraph(_vertices);
-            for (int v = 0; v < _vertices; v++)
+            var reversedGraph = new DirectedGraph(vertices);
+            for (int v = 0; v < vertices; v++)
             {
                 foreach (var w in AdjecentVertices(v))
                 {

@@ -1,10 +1,8 @@
-﻿using Fluttert.Utils.Graphs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace Fluttert.ChallengeUtils.Graphs
+namespace Fluttert.Utils.Graphs
 {
     /// <summary>
     /// Undirected graph
@@ -15,37 +13,46 @@ namespace Fluttert.ChallengeUtils.Graphs
         public Graph(int vertices)
         {
             if (vertices < 0) { throw new ArgumentOutOfRangeException("No negative amount of vertices can exist"); }
-            _vertices = vertices;
-            _edges = 0;
-            _adjacencyList = new List<int>[vertices];
+            this.vertices = vertices;
+            edges = 0;
+            adjacencyList = new List<int>[vertices];
+            addedEdges = new List<int[]>();
             for (int v = 0; v < vertices; v++)
             {
-                _adjacencyList[v] = new List<int>();
+                adjacencyList[v] = new List<int>();
             }
         }
 
-        private readonly int _vertices;
-        private int _edges;
-        private List<int>[] _adjacencyList;
+        private readonly int vertices;
+        private readonly List<int>[] adjacencyList;
+        private readonly List<int[]> addedEdges;
+        private int edges;
 
         #region IGraph methods
+
         /// <summary>
         /// Total amount of vertices in this graph
         /// </summary>
         /// <returns>integer, amount of vertices</returns>
-        public int Vertices() => _vertices;
+        public int Vertices() => vertices;
 
         /// <summary>
         /// Total amount of edges in this graph
         /// </summary>
         /// <returns>integer, amount of edges</returns>
-        public int Edges() => _edges/2;
+        public int Edges() => edges;
 
         public void AddEdge(int vertexFrom, int vertexTo)
         {
-            _adjacencyList[vertexFrom].Add(vertexTo);
-            _adjacencyList[vertexTo].Add(vertexFrom);
-            _edges=+2;
+            addedEdges.Add(new int[] { vertexFrom, vertexTo });
+            adjacencyList[vertexFrom].Add(vertexTo);
+
+            // add the edge the ohter way around; only if the edge is not a self-loop
+            if (vertexFrom != vertexTo)
+            {
+                adjacencyList[vertexTo].Add(vertexFrom);
+            }
+            edges++;
         }
 
         /// <summary>
@@ -53,7 +60,7 @@ namespace Fluttert.ChallengeUtils.Graphs
         /// </summary>
         /// <param name="vertex">id of vertex</param>
         /// <returns>List with ID's of connected vertices</returns>
-        public IEnumerable<int> AdjecentVertices(int v) => _adjacencyList[v];
+        public IEnumerable<int> AdjecentVertices(int v) => adjacencyList[v];
 
         #endregion IGraph methods
 
@@ -61,15 +68,12 @@ namespace Fluttert.ChallengeUtils.Graphs
         /// Creates a deepcopy of this graph
         /// </summary>
         /// <returns>Graph</returns>
-        public Graph Copy()
+        public Graph DeepCopy()
         {
             var copy = new Graph(Vertices());
-            for (int v = 0; v < Vertices(); v++)
+            for (int e = 0; e < addedEdges.Count; e++)
             {
-                var edges = AdjecentVertices(v).ToList();
-                for (int e = 0; e < edges.Count; e++) {
-                    copy.AddEdge(v, edges[e]);
-                }
+                copy.AddEdge(addedEdges[e][0], addedEdges[e][1]);
             }
             return copy;
         }
@@ -78,17 +82,7 @@ namespace Fluttert.ChallengeUtils.Graphs
         /// Standard representation of the directed graph
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("{_vertices} vertices, {_edges} edges");
-            for (int v = 0; v < _vertices; v++)
-            {
-                sb.AppendLine($"{v} connects to: {string.Join(" ", AdjecentVertices(v))}");
-            }
-
-            return sb.ToString();
-        }
+        public override string ToString() => GraphUtil.Stringify(this);
 
         /// <summary>
         /// Helper funtion to check whether or not a vertex is withing range
@@ -97,7 +91,7 @@ namespace Fluttert.ChallengeUtils.Graphs
         /// <returns></returns>
         private bool IsVertexWithinBounds(int vertexId)
         {
-            return vertexId>=0 && vertexId < Vertices();
+            return vertexId >= 0 && vertexId < Vertices();
         }
     }
 }
