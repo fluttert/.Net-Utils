@@ -10,7 +10,7 @@ namespace Fluttert.ChallengeUtils.Graphs
     /// Undirected graph
     /// </summary>
     /// <remarks>This is inspired on the book Algorithms 4th edition by Sedgewick & Wayne</remarks>
-    internal class Graph : IGraph
+    public class Graph : IGraph
     {
         public Graph(int vertices)
         {
@@ -39,13 +39,13 @@ namespace Fluttert.ChallengeUtils.Graphs
         /// Total amount of edges in this graph
         /// </summary>
         /// <returns>integer, amount of edges</returns>
-        public int Edges() => _edges;
+        public int Edges() => _edges/2;
 
         public void AddEdge(int vertexFrom, int vertexTo)
         {
             _adjacencyList[vertexFrom].Add(vertexTo);
             _adjacencyList[vertexTo].Add(vertexFrom);
-            _edges++;
+            _edges=+2;
         }
 
         /// <summary>
